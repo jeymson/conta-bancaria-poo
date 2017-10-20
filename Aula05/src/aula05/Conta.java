@@ -19,7 +19,6 @@ public class Conta {
     public Conta(String tipoConta, String cliente, String numConta) {
         this.status = false;
         this.saldo=0;
-        this.tipoConta = tipoConta;
         this.cliente = cliente;
         this.abrirConta(tipoConta, numConta);
     }
@@ -43,10 +42,11 @@ public class Conta {
        String msg;
        if(this.getSaldo()==0){
            msg = "Conta encerrada com sucesso.";
+           this.setStatus(false);
        }else{
            msg = "Não foi possível encerrar sua conta.\nVocê possui saldo de R$"+this.getSaldo();
        }
-       this.setStatus(false);
+       
        return msg;
        
    }
