@@ -15,7 +15,7 @@ public class Conta {
     public String numConta;
     
       
-    
+    //Métodos construtor, com inicialização das informações básicas
     public Conta(String tipoConta, String cliente, String numConta) {
         this.status = false;
         this.saldo=0;
@@ -23,7 +23,8 @@ public class Conta {
         this.cliente = cliente;
         this.abrirConta(tipoConta, numConta);
     }
-
+    
+   //Tratamento para abrir conta do tipo CC ou CP, que receberá um bônus no saldo, de acordo com o tipo. 
    private void abrirConta(String tipoConta, String numConta){
        if(tipoConta.equalsIgnoreCase("cp") || this.tipoConta.equalsIgnoreCase("cc")){
            if(tipoConta.equals("cc")){
@@ -37,6 +38,7 @@ public class Conta {
        }
    }
    
+   //Encerramento da conta
    public String fecharConta(){
        String msg;
        if(this.getSaldo()==0){
@@ -48,6 +50,8 @@ public class Conta {
        return msg;
        
    }
+   
+   //Saque com verificação prévia de limite
     public String sacar(float valor){
         String msg;
         if ((this.saldo - valor)>=0){
@@ -58,6 +62,7 @@ public class Conta {
         }   
         return msg;
     }
+    
     
     public String depositar(float valor){
         String msg;
@@ -70,6 +75,7 @@ public class Conta {
         return msg;
     }
     
+    //Taxa que é cobrada mensalmente
     public void pagarMensal(){
         if(tipoConta.equalsIgnoreCase("cp") || this.tipoConta.equalsIgnoreCase("cc")){
            if(tipoConta.equals("cc")){
@@ -82,6 +88,7 @@ public class Conta {
        }
     }
     
+    //emitir extrato no console
     public String extrato(){
         String extrato="=====================\nCliente: "+this.cliente+"\n"
                 + "Tipo: "+this.tipoConta+" - "+this.getNumConta()+"\n"
